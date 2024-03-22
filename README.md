@@ -1,1 +1,1 @@
-# java_mipt
+# java-homework
