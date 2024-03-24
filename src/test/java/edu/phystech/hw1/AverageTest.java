@@ -10,16 +10,14 @@ public class AverageTest {
     // average(1), average(1, 2), average(1, 2, 3, 4, 5, 10) и тп.
 
     private static double average(int... numbers) {
-        double sum = 0;
-        int count = 0;
-        for(int number : numbers) {
-            sum += number;
-            count++;
-        }
-        if (count == 0) {
+        if (numbers.length == 0) {
             return 0;
         }
-        return sum/count;
+        double sum = 0;
+        for(int number : numbers) {
+            sum += number;
+        }
+        return sum / numbers.length;
     }
 
 

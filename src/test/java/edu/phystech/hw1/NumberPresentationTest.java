@@ -36,7 +36,7 @@ public class NumberPresentationTest {
         String hex = "";
         while (x > 0) {
             if (x % 16 > 9) {
-                hex = (char) (87 + x % 16) + hex;
+                hex = (char) ('W' + x % 16) + hex;
             } else {
                 hex = String.valueOf(x % 16) + hex;
             }
