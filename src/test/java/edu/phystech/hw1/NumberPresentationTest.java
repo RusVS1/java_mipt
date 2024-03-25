@@ -9,40 +9,40 @@ public class NumberPresentationTest {
         if (x == 0) {
             return "0";
         }
-        String binary = "";
+        StringBuilder binary = new StringBuilder();
         while (x > 0) {
-            binary = String.valueOf(x % 2) + binary;
+            binary.insert(0, x % 2);
             x /= 2;
         }
-        return binary;
+        return binary.toString();
     }
 
     private static String toOct(int x) {
         if (x == 0) {
             return "0";
         }
-        String oct = "";
+        StringBuilder oct = new StringBuilder();
         while (x > 0) {
-            oct = String.valueOf(x % 8) + oct;
+            oct.insert(0, x % 8);
             x /= 8;
         }
-        return oct;
+        return oct.toString();
     }
 
     private static String toHex(int x) {
         if (x == 0) {
             return "0";
         }
-        String hex = "";
+        StringBuilder hex = new StringBuilder();
         while (x > 0) {
             if (x % 16 > 9) {
-                hex = (char) ('W' + x % 16) + hex;
+                hex.insert(0, (char) ('W' + x % 16));
             } else {
-                hex = String.valueOf(x % 16) + hex;
+                hex.insert(0, x % 16);
             }
             x /= 16;
         }
-        return hex;
+        return hex.toString();
     }
 
     @Test
