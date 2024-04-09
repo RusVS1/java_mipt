@@ -6,6 +6,34 @@ import java.util.stream.Stream;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+record Contact(String username, String email) implements Comparable<Contact> {
+    public static final String UNKNOWN_EMAIL = "unknown";
+
+    Contact {
+        if (username.isBlank()) {
+            throw new InvalidContactFieldException("username");
+        }
+        if (!(email.matches("[0-9A-Za-z].*?@gmail\\.com") || email == "unknown")) {
+            throw new InvalidContactFieldException("email");
+        }
+    }
+
+    Contact(String username) {
+        this(username, UNKNOWN_EMAIL);
+    }
+
+
+    @Override
+    public int compareTo(Contact other) {
+        if (this.username.length() > other.username.length()) {
+            return 1;
+        }
+        if (this.username.length() < other.username.length()) {
+            return -1;
+        }
+        return 0;
+    }
+}
 
 public class ContactTest {
 
@@ -13,8 +41,8 @@ public class ContactTest {
     public void justWorks() {
 
         Assertions.assertDoesNotThrow(() -> {
-            Contact first = new Contact("username", "username@gmai.com");
-            Contact second = new Contact("123", "123@gmai.com");
+            Contact first = new Contact("username", "username@gmail.com");
+            Contact second = new Contact("123", "123@gmail.com");
 
             Contact withoutEmail = new Contact("withoutEmail");
             Assertions.assertEquals(Contact.UNKNOWN_EMAIL, withoutEmail.email());
