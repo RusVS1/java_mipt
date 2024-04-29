@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 public class Functional {
 
-    public static <T, R> List<R> map(List<T> collection, Function<T, R> function) {
+    public static <T, R> List<R> map(List<? extends T> collection, Function<T, R> function) {
         List<R> result = new ArrayList<>();
         for (T elem : collection) {
             result.add(function.apply(elem));
